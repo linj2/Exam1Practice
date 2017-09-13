@@ -9,8 +9,8 @@ emphasized:
   -- animation (Problem 0c)
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.  September 2016.
-"""  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
+         their colleagues and Jing Lin.  September 2016.
+"""  # DOne : 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
 
@@ -147,7 +147,7 @@ def problem0a(n):
            since (2 + 4 + 6) is 12, which is NOT odd.
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # DOne: 2. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -164,7 +164,9 @@ def problem0a(n):
     #        Simply try a few examples to convince yourself of this.
     #        ASK FOR HELP if you do not understand this hint.
     # ------------------------------------------------------------------
-
+    if sum_of_digits(n)%2 ==1:
+        return True
+    return False
 
 def test_problem0b():
     """ Tests the   problem0b   function. """
@@ -219,7 +221,7 @@ def problem0b(n):
            since there are 46 primes between 2 and 200.
      """
     # ------------------------------------------------------------------
-    # TODO: 3. Implement and test this function.
+    # TODOne: 3. Implement and test this function.
     #          Tests have been written for you (above).
     #
     ####################################################################
@@ -228,7 +230,11 @@ def problem0b(n):
     #    **  use (call) the   is_prime   function that is DEFINED ABOVE.
     ####################################################################
     # ------------------------------------------------------------------
-
+    count = 0
+    for k in range(n):
+        if is_prime(2+k):
+            count = count+1
+    return count
 
 def test_problem0c():
     """ Tests the   problem0c  function. """
@@ -295,7 +301,11 @@ def problem0c(circle, n, window):
     #   renders with a half-second pause after rendering.
     ####################################################################
     # ------------------------------------------------------------------
-
+    for k in range(n):
+        newcircle = rg.Circle(rg.Point(circle.center.x + 2 * circle.radius + k * 2 * circle.radius, circle.center.y), circle.radius)
+        newcircle.attach_to(window)
+        circle.attach_to(window)
+        window.render(0.5)
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
