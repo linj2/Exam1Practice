@@ -2,7 +2,7 @@
 PRACTICE Test 1, problem 2.
 
 Authors: David Mutchler, Valerie Galluzzi, Mark Hays, Amanda Stouder,
-         their colleagues and PUT_YOUR_NAME_HERE.  September 2016.
+         their colleagues and Jing Lin.  September 2016.
 """  # TODO: 1. PUT YOUR NAME IN THE ABOVE LINE.
 
 import rosegraphics as rg
@@ -30,7 +30,7 @@ import rosegraphics as rg
 
 def main():
     """ Calls the   TEST   functions in this module. """
-    test_problem2a()
+    #test_problem2a()
     test_problem2b()
 
 
@@ -102,7 +102,7 @@ def problem2a(circle, rectangle, window):
       :type window:    rg.RoseWindow
     """
     # ------------------------------------------------------------------
-    # TODO: 2. Implement and test this function.
+    # TODONE: 2. Implement and test this function.
     #          Tests have been written for you (above).
     # ------------------------------------------------------------------
     # ------------------------------------------------------------------
@@ -110,6 +110,21 @@ def problem2a(circle, rectangle, window):
     #    DIFFICULTY:      6
     #    TIME ESTIMATE:   10 to 15 minutes.
     # ------------------------------------------------------------------
+
+    circle.attach_to(window)
+    rectangle.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    line = rg.Line(rectangle._upper_right_corner, rectangle._lower_left_corner)
+    line.arrow = 'last'
+    line.attach_to(window)
+    window.render()
+    window.continue_on_mouse_click()
+
+    circle.fill_color = rectangle.outline_color
+    window.render()
+
 
 def test_problem2b():
     """ Tests the  problem2b   function. """
@@ -181,7 +196,20 @@ def problem2b(rect, n, delta, win):
     #    DIFFICULTY:      7
     #    TIME ESTIMATE:   15 to 25 minutes.
     # ------------------------------------------------------------------
+    leftwidth = rect.get_upper_left_corner().x
+    leftheight = rect.get_upper_left_corner().y
+    rightwidth = rect.get_lower_right_corner().x
+    rightheight = rect.get_lower_right_corner().y
 
+    for k in range(n):
+        newrectangle = rg.Rectangle(rg.Point(leftwidth, leftheight), rg.Point(rightwidth, rightheight))
+        newrectangle.attach_to(win)
+        rect.attach_to(win)
+        win.render()
+        leftwidth = leftwidth - delta
+        leftheight = leftheight - delta
+        rightwidth = rightwidth + delta
+        rightheight = rightheight + delta
 
 # ----------------------------------------------------------------------
 # Calls  main  to start the ball rolling.
